@@ -1,0 +1,28 @@
+import java.util.*;
+public class DuplicateNumber
+{
+public static int FindDuplicate(int arr[],int size){
+    for(int i=0;i<size;i++){
+        for(int j=i+1;j<size;j++){
+            if(arr[i]==arr[j]){
+                return arr[i];
+            }
+        }
+    }
+    return -1;
+}
+public static void main(String[] args){
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    for(int i=1;i<=n;i++) {
+        int size = sc.nextInt();
+        int arr[] = new int[size];
+        for (int j = 0; j < size; j++) {
+            arr[j] = sc.nextInt();
+        }
+
+        int a = FindDuplicate(arr,size);
+        System.out.println(a);
+    }
+}
+}
