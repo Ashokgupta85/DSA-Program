@@ -1,4 +1,3 @@
-import java.util.*;
 public class DuplicateNumber
 {
 public static int FindDuplicate(int arr[],int size){
@@ -11,18 +10,5 @@ public static int FindDuplicate(int arr[],int size){
     }
     return -1;
 }
-public static void main(String[] args){
-    Scanner sc=new Scanner(System.in);
-    int n=sc.nextInt();
-    for(int i=1;i<=n;i++) {
-        int size = sc.nextInt();
-        int arr[] = new int[size];
-        for (int j = 0; j < size; j++) {
-            arr[j] = sc.nextInt();
-        }
 
-        int a = FindDuplicate(arr,size);
-        System.out.println(a);
-    }
-}
 }
