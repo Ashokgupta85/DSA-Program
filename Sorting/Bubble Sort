@@ -2,15 +2,13 @@ public class Solution {
     
     public static void bubbleSort(int[] arr, int n) {   
         // Write your code here.
-       for(int i=0;i<n;i++) {
-            int count = 0;
-            for (int j = count + 1; j < n-i; j++) {
-                if (arr[count] > arr[j]) {
+       for(int i=0;i<n-1;i++) {
+            for (int j =0; j < n-1-i; j++) {
+                if (arr[j] > arr[j+1]) {
                     int temp = arr[j];
-                    arr[j] = arr[count];
-                    arr[count] = temp;
+                    arr[j] = arr[j+1];
+                    arr[J+1] = temp;
                 }
-                count++;
 
             }
         }
