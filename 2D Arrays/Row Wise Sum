@@ -1,0 +1,42 @@
+import java.util.Scanner;
+public class RowWiseSum {
+    public static void rowWiseSum2D(int arr[][]) {
+        int rows = arr.length;
+
+        for (int i = 0; i < rows; i++) {
+            int sum = 0;
+            for (int j = 0; j < arr[i].length; j++) {
+                sum = sum + arr[i][j];
+            }
+            System.out.print(sum+" ");
+        }
+
+    }
+    public static void print2DArray(int arr[][]){
+        int rows = arr.length;
+        int cols = arr[0].length;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j= 0; j< cols; j++){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int rows = sc.nextInt();
+        int cols = sc.nextInt();
+        int arr[][]=new int[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        print2DArray(arr);
+        rowWiseSum2D(arr);
+
+    }
+}
