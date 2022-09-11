@@ -1,0 +1,8 @@
+public class PowerUsingRecursion {
+    public static int Power(int n,int x){
+        if(x==0){
+            return 1;
+        }
+        return n*Power(n,x-1);
+}
+}
