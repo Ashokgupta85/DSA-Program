@@ -1,0 +1,16 @@
+public class SumOfArrayUsingRecursion {
+    public static int SumOfArray(int arr[],int n){
+        if(arr.length==n){
+            return 0;
+        }
+        int b=arr[n];
+        return b+SumOfArray(arr,n+1);
+    }
+    public static void main(String[] args){
+        int arr[]={2,5,4,6};
+        int StartIndex=0;
+
+            System.out.print(SumOfArray(arr,StartIndex));
+        }
+
+}
