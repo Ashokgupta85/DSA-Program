@@ -22,7 +22,7 @@ Sample Output :
 
 public class FirstIndexNumber {
     public static int IndexNumber(int arr[], int startIndex, int x) {
-        if (startIndex==arr.length-1) {
+        if (startIndex==arr.length) {
             return -1;
         }
         if(arr[startIndex]==x){
