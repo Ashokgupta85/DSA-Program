@@ -1,0 +1,29 @@
+Given two strings denoting non-negative numbers X and Y. Calculate the sum of X and Y.
+
+
+Example 1:
+
+Input:
+X = "25", Y = "23"
+Output:
+48
+Explanation:
+The sum of 25 and 23 is 48.
+Example 2:
+
+Input:
+X = "2500", Y = "23"
+Output:
+2523
+
+//Solution
+
+class Solution {
+    String findSum(String X, String Y) {
+        // code here
+       java.math.BigInteger a=new java.math.BigInteger(X);
+       java.math.BigInteger b=new java.math.BigInteger(Y);
+      java.math.BigInteger sum=a.add(b);
+      return sum.toString();
+    }
+}
