@@ -1,0 +1,67 @@
+import java.util.Scanner;
+/*class Node<T>{
+    T data;
+    Node<T> next;
+    Node(T data){
+        this.data=data;
+    }
+
+}*/
+
+
+public class InsertLinkedList {
+    public static Node<Integer> Insertion(Node<Integer>head,int pos,int data){
+        int currpos=0;
+        Node<Integer> newNode=new Node<>(data);
+        if(pos==0){
+            newNode.next=head;
+            head=newNode;
+            return head;
+        }
+        Node<Integer> temp=head;
+        while(temp!=null && currpos<(pos-1)){
+            temp=temp.next;
+            currpos++;
+        }
+        if(temp==null) {
+            return head;
+        }
+        newNode.next=temp.next;
+        temp.next=newNode;
+        return head;
+
+
+    }
+    public static Node<Integer> takeInput(){
+        Scanner sc= new Scanner(System.in);
+        int data=sc.nextInt();
+        Node<Integer> head=null,tail=null;
+        while(data!=-1){
+            Node<Integer> currentNode=new Node<>(data);
+            if(head==null){
+                head=currentNode;
+                tail=currentNode;
+            }
+            else{
+                tail.next=currentNode;
+                tail=currentNode;
+            }
+            data=sc.nextInt();
+        }
+        return head;
+    }
+    public static void print(Node<Integer> head){
+        Node<Integer>temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+    public static void main(String[] args){
+        Node<Integer> head=takeInput();
+        print(head);
+        System.out.println();
+        Node<Integer> a=Insertion(head,3,40);
+        print(a);
+    }
+}
