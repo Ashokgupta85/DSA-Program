@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class DeletionLinkedList {
+    public static Node<Integer> delete(Node<Integer> head,int pos){
+        if (head == null) {
+
+            return head;
+        }
+        if(pos==0){
+            return head.next;
+        }
+        int currpos=0;
+        Node<Integer> temp=head;
+        while(temp!=null && (pos-1)>currpos){
+            temp=temp.next;
+            currpos=currpos+1;
+        }
+        if(temp==null|| temp.next==null) {
+            return head;
+        }
+            temp.next=temp.next.next;
+
+        return head;
+    }
+    public static Node<Integer> takeInput(){
+        Scanner sc= new Scanner(System.in);
+        int data=sc.nextInt();
+        Node<Integer> head=null,tail=null;
+        while(data!=-1){
+            Node<Integer> currentNode=new Node<>(data);
+            if(head==null){
+                head=currentNode;
+                tail=currentNode;
+            }
+            else{
+                tail.next=currentNode;
+                tail=currentNode;
+            }
+            data=sc.nextInt();
+        }
+        return head;
+    }
+    public static void print(Node<Integer> head){
+        Node<Integer>temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+    public static void main(String[] args){
+        Node<Integer> head=takeInput();
+        print(head);
+        System.out.println();
+        Node<Integer> a=delete(head,3);
+        print(a);
+    }
+
+}
