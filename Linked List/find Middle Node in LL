@@ -1,0 +1,58 @@
+Input Linked List
+
+Output
+
+1->2->3->4->5->NULL	3
+10->20->30->40->NULL	30
+Note that in the case of an even number of nodes in the Linked List, there will be two middle nodes. 
+In that case, we need to print the first middle element. The various approaches to solve this problem are discussed in detail along with code in Java.
+
+//Solution
+
+
+import java.util.* ;
+import java.io.*; 
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+       class Node 
+        { 
+        public:
+            int data;
+            Node next;
+            Node(int data) 
+            {
+              this.data = data;
+              this.next = null;
+            }
+        };
+
+*****************************************************************/
+
+public class Solution {
+    public static Node findMiddle(Node head) 
+    {
+        // Write your code here
+        Node temp=head;
+        Node traverse=head;
+        int len=0;
+        while(traverse!=null){
+            traverse=traverse.next;
+            len=len+1;
+        }
+        int mid=len/2;
+        int count=0;
+        while(temp!=null && count<=mid){
+            if(mid==count){
+                return temp;
+            }
+            temp=temp.next;
+            count=count+1;
+            
+        }
+        return null;
+    }
+}
