@@ -59,17 +59,11 @@ public class Solution {
 	public static int findNode(LinkedListNode<Integer> head, int n) {
 		// Write your code here.
         LinkedListNode<Integer> temp=head;
-        LinkedListNode<Integer>traverse=head;
         int pos=0;
-        int len=0;
         if(head==null){
             return -1;
         }
-        while(traverse!=null){
-            len=len+1;
-          traverse=  traverse.next;
-        }
-        while(temp!=null && pos<=len){
+        while(temp!=null){
             if(temp.data==n){
                 return pos;
             }
