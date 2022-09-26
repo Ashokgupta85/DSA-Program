@@ -1,0 +1,46 @@
+// This Approach is O(n2)
+
+// this Approach is O(n2)
+public class PalindromeInLL {
+    public static boolean isPalindrome(Node<Integer> head) {
+        if (head == null) {
+            return true;
+        }
+
+        Node<Integer> temp = head;
+        int count = 0;
+        Node<Integer> length = head;
+        while (length != null) {
+            count++;
+            length = length.next;
+        }
+        if (count % 2 == 1) {
+            while (temp.next != null) {
+                Node<Integer> traverse = temp;
+                while (traverse.next.next != null) {
+                    traverse = traverse.next;
+                }
+                if (temp.data == traverse.next.data) {
+                    traverse.next = null;
+                } else {
+                    return false;
+                }
+                temp = temp.next;
+            }
+            return true;
+        }else{
+            while (temp != null) {
+                Node<Integer> traverse = temp;
+                while (traverse.next.next != null) {
+                    traverse = traverse.next;
+                }
+                if (temp.data == traverse.next.data) {
+                    traverse.next = null;
+                } else {
+                    return false;
+                }
+                temp = temp.next;
+            }
+            return true;
+        }
+    }
