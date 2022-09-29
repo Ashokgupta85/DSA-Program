@@ -1,0 +1,14 @@
+public class Solution 
+{
+	public static Node reverseLinkedList(Node head) 
+	{
+		// Write your code here.
+        if(head==null || head.next==null){
+            return head;
+        }
+        Node temp=reverseLinkedList(head.next);
+        head.next.next=head;
+        head.next=null;
+        return temp;
+	}
+}
