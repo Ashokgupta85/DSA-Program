@@ -1,0 +1,46 @@
+public class EvenAfterOddNode {
+    public static Node<Integer> evenafterOdd(Node<Integer> head) {
+        if (head == null) {
+            return head;
+        }
+        Node<Integer> oddH = null, oddT = null, evenH = null, evenT = null;
+        Node<Integer> temp = head;
+
+        while (temp != null) {
+            if ((temp.data) % 2 == 1) {
+
+                if (oddH == null) {
+                    oddH=temp;
+                    oddT=temp;
+
+                } else {
+                    oddT.next = temp;
+                    oddT= oddH.next;
+                }
+            } else {
+                if (evenH == null) {
+                    evenH = temp;
+                    evenT=temp;
+
+                } else {
+                    evenT.next = temp;
+                    evenT=evenT.next;
+                }
+            }
+            temp=temp.next;
+        }
+        if(oddH==null){
+            return evenH;
+
+        }else {
+            oddT.next=evenH;
+        }
+        if(evenH!=null){
+            evenT.next=null;
+        }
+
+        return oddH;
+
+
+    }
+}
