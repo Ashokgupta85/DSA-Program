@@ -1,0 +1,26 @@
+Input: head = [1,2,3,4]
+Output: [2,1,4,3]
+
+//Solution
+
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode curr=head;
+        ListNode frwd=head.next;
+        ListNode a=new ListNode(0);
+        while(frwd!=null){
+            a.val=curr.val;
+            curr.val=frwd.val;
+            frwd.val=a.val;
+            if(frwd.next==null){
+            break;
+            }
+            curr=curr.next.next;
+            frwd=frwd.next.next;
+        }
+        return head;
+    }
+}
