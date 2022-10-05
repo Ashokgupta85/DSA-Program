@@ -1,0 +1,59 @@
+Given two lists sorted in increasing order, create a new list representing the intersection of the two lists. 
+The new list should be made with its own memory — the original lists should not be changed.
+Note: The list elements are not necessarily distinct.
+
+Example 1:
+
+Input:
+L1 = 1->2->3->4->6
+L2 = 2->4->6->8
+Output: 2 4 6
+Explanation: For the given first two
+linked list, 2, 4 and 6 are the elements
+in the intersection.
+Example 2:
+
+Input:
+L1 = 10->20->40->50
+L2 = 15->40
+Output: 40
+
+//Solution
+
+class Sol
+{
+   public static Node findIntersection(Node head1, Node head2)
+    {
+        // code here.
+        if(head1==null || head2==null){
+            return null;
+        }
+        Node head=null;
+        Node tail=null;
+        Node t1=head1;
+        Node t2=head2;
+        while(t1!=null && t2!=null){
+            if(t1.data>t2.data){
+                t2=t2.next;
+            }
+          else if(t1.data==t2.data){
+                if(head==null){
+                head=t1;
+                tail=t1;
+            }else{
+                tail.next=t1;
+                tail=tail.next;
+            }
+            t1=t1.next;
+            t2=t2.next;
+            }else{
+                t1=t1.next;
+            }
+            
+        }
+        if(head!=null){
+            tail.next=null;
+        }
+        return head;
+    }
+}
