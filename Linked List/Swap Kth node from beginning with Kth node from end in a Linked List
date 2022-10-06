@@ -16,6 +16,8 @@ Output: [7,9,6,6,8,7,3,0,9,5]
 
 //Solution
 
+//swap data begin from kth and end from kth
+
 class Solution {
     public ListNode swapNodes(ListNode head, int k) {
         if(head==null ||head.next==null){
