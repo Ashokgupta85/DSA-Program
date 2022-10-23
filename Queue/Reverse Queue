@@ -1,0 +1,31 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class ReverseQueue {
+    public static Queue<Integer> reverse(Queue<Integer> q){
+
+        Stack<Integer> st=new Stack<Integer>();
+        while(!q.isEmpty()){
+            st.push(q.peek());
+            q.remove();
+        }
+        while(!st.isEmpty()){
+            q.add(st.pop());
+        }
+        return q;
+    }
+    public static void main(String[] args){
+
+        Queue<Integer> q=new LinkedList<>();
+        int arr[]={10,20,30,40,50};
+        for(int i=0;i<arr.length;i++){
+            q.add(arr[i]);
+        }
+        reverse(q);
+        for(int i=0;i<arr.length;i++){
+            System.out.print(q.remove()+" ");
+        }
+
+    }
+}
