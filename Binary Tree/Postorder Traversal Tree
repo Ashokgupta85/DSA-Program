@@ -1,0 +1,29 @@
+ 
+Input: root = [1,null,2,3]
+Output: [3,2,1]
+Example 2:
+
+Input: root = []
+Output: []
+
+//Solution
+
+class Solution {
+    ArrayList<Integer> arr=new ArrayList<>();
+    public List<Integer> postorderTraversal(TreeNode root) {
+        traversepreorder(root);
+        return arr;
+            
+    } 
+    
+    public void traversepreorder(TreeNode root){
+            if(root==null){
+                return;
+            }
+        postorderTraversal(root.left);
+        postorderTraversal(root.right);
+         arr.add(root.val);
+        
+    }
+    
+}
