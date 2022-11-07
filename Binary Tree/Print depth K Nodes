@@ -1,0 +1,13 @@
+public class DepthKNode {
+    public static void printDepthKNode(BTNode<Integer>root,int k){
+        if(root==null){
+            return;
+        }
+        if(k==0){
+            System.out.print(root.data+" ");
+            return;
+        }
+        printDepthKNode(root.left,k-1);
+        printDepthKNode(root.right,k-1);
+    }
+    }
