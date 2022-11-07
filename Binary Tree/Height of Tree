@@ -1,0 +1,9 @@
+public class HeightOfTree {
+    public static int heightOfTree(BTNode<Integer>root){
+        if(root==null){
+            return 0;
+        }
+        int a=1+Math.max(heightOfTree(root.left),heightOfTree(root.right));
+        return a;
+    }
+    }
