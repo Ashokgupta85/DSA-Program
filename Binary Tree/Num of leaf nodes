@@ -1,0 +1,11 @@
+public class NumOFLeafNode {
+    public static int numLeaf(BTNode<Integer>root){
+        if(root==null){
+            return 0;
+        }
+        if(root.left==null && root.right==null){
+            return 1;
+        }
+        return numLeaf(root.left)+numLeaf(root.right);
+    }
+    }
