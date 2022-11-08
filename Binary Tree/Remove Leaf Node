@@ -1,0 +1,13 @@
+public class RemoveLeafNode {
+    public static BTNode<Integer> removeNode(BTNode<Integer>root){
+        if(root==null){
+            return null;
+        }
+        if(root.left==null && root.right==null){
+            return null;
+        }
+        root.left=removeNode(root.left);
+        root.right=removeNode(root.right);
+        return root;
+    }
+    }
