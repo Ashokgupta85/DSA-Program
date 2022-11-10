@@ -1,0 +1,19 @@
+public class DaimeterOfTree {
+    public static int diameterTree(BTNode<Integer> root) {
+        if (root == null) {
+            return 0;
+        }
+        int d1 = Height(root.left) + Height(root.right);
+        int d2 = diameterTree(root.left);
+        int d3 = diameterTree(root.right);
+        return Math.max(d1, Math.max(d2, d3));
+    }
+
+    public static int Height(BTNode<Integer>root){
+        if(root==null){
+            return 0;
+        }
+        int a=1+Math.max(Height(root.left),Height(root.right));
+        return a;
+    }
+}
