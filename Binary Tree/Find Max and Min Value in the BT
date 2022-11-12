@@ -1,0 +1,63 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+class Pair<T, U> {
+        T min;
+        U max;
+
+public Pair(T min, U max) {
+        this.min = min;
+        this.max = max;
+        }
+
+        }
+
+
+public class FindMinMaxValue {
+    public static Pair<Integer, Integer> findMaxAndMinData(BTNode<Integer> root) {
+        if (root == null) {
+            return new Pair<>(Integer.MAX_VALUE, Integer.MIN_VALUE);
+        }
+        Pair<Integer, Integer> leftPair = findMaxAndMinData(root.left);
+        Pair<Integer, Integer> rightPair = findMaxAndMinData(root.right);
+        int min = Math.min(root.data, Math.min(leftPair.min, rightPair.min));
+        int max = Math.max(root.data, Math.max(leftPair.max, rightPair.max));
+
+        return new Pair<>(min, max);
+
+    }
+
+    public static BTNode<Integer> takeInputLevelWise() {
+        Scanner s = new Scanner(System.in);
+        int rootData = s.nextInt();
+        BTNode<Integer> root = new BTNode<>(rootData);
+        Queue<BTNode<Integer>> pendingChild = new LinkedList<BTNode<Integer>>();
+        pendingChild.add(root);
+        while (!pendingChild.isEmpty()) {
+            BTNode<Integer> front = pendingChild.poll();
+            System.out.println("Enter the left child");
+            int left = s.nextInt();
+            if (left != -1) {
+                BTNode<Integer> leftChild = new BTNode<>(left);
+                front.left = leftChild;
+                pendingChild.add(leftChild);
+            }
+            System.out.println("Enter the right child");
+            int right = s.nextInt();
+            if (right != -1) {
+                BTNode<Integer> rightChild = new BTNode<>(right);
+                front.right = rightChild;
+                pendingChild.add(rightChild);
+            }
+        }
+        return root;
+    }
+
+    public static void main(String[] args) {
+        BTNode<Integer> root = takeInputLevelWise();
+        Pair<Integer,Integer>arr=findMaxAndMinData(root);
+        System.out.println(arr.min+" "+arr.max);
+
+
+    }
+}
