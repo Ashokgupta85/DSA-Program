@@ -1,0 +1,38 @@
+class Solution {
+    public TreeNode reverseOddLevels(TreeNode root) {
+     
+        if(root==null){
+            return root;
+        }
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        int lvl=0;
+        while(!q.isEmpty()){
+            int size=q.size();
+            for(int i=0;i<size;i++){
+                TreeNode temp=q.poll();
+                if(temp.left!=null){
+                    q.add(temp.left);
+                }
+                if(temp.right!=null){
+                    q.add(temp.right);
+                }
+            }
+            lvl++;
+            if(lvl%2==1 && !q.isEmpty()){
+                int arr[]=new int[q.size()];//create an arr for reverse nodes
+                int i=0;
+                for(TreeNode n : q){
+                    arr[i]=n.val;//copy nodes for reverse
+                    i++;
+                }
+                int j=q.size()-1;
+                for(TreeNode m : q){
+                    m.val=arr[j];//reverse nodes
+                    j--;
+                }
+            }
+        }
+        return root;
+    }
+}
