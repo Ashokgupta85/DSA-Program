@@ -1,0 +1,26 @@
+import java.util.HashMap;
+
+public class IntersectionTwoArr{
+    public static void intersectionTwoArray(int arr1[],int arr2[]){
+        HashMap<Integer,Integer>hm=new HashMap<>();
+        for(int elem:arr1){
+            if(hm.containsKey(elem)){
+                hm.put(elem,hm.get(elem)+1);
+            }else{
+                hm.put(elem,1);
+            }
+        }
+        for(int i:arr2) {
+            if (hm.containsKey(i)) {
+                int freq = hm.get(i);
+                if (freq > 0) {
+                    System.out.print(i + " ");
+                    hm.put(i, freq - 1);
+                }
+            }
+        }
+
+
+
+    }
+         
