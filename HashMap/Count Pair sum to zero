@@ -1,0 +1,44 @@
+Sample Input 1:
+5
+2 1 -2 2 3
+Sample Output 1:
+2
+
+
+//Solution
+
+
+public class PairSumToZero {
+    public static int countSumToZero(int arr[]){
+        HashMap<Integer,Integer>hm=new HashMap<>();
+        int finalCount=0;
+        for(int elem:arr){
+            if(hm.containsKey(elem)){
+                hm.put(elem,hm.get(elem)+1);
+            }else{
+                hm.put(elem,1);
+            }
+        }
+        for(int elem:arr){
+            if(hm.containsKey(-elem) && hm.get(elem)!=0){
+                int times;
+                if(elem==(-elem)){
+                    int occ=hm.get(elem);
+                    times=(occ*(occ-1))/2;
+                    finalCount=finalCount+times;
+                    hm.put(elem,0);
+                    continue;
+                }
+                times=hm.get(elem)*hm.get(-elem);
+                finalCount=finalCount+times;
+                hm.put(elem,0);
+                hm.put(-elem,0);
+            }
+        }
+        return finalCount;
+    }
+    public static void main(String[] args){
+        int arr[]={4,-2,8,2,-2,5};
+        System.out.println(countSumToZero(arr));
+    }
+}
