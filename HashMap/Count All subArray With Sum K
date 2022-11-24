@@ -1,26 +1,20 @@
-
-public class CountAllSubArrayWithSumK {
-    public static int countSubArrayEqualK(int arr[],int k){
-        HashMap<Integer,Integer> hm=new HashMap<>();
+class Solution {
+    public int subarraySum(int[] arr, int k) {
+         HashMap<Integer,Integer> hm=new HashMap<>();
         int sum=0;
-        int i=-1;
+        int i=0;
         hm.put(sum,1);
         int count=0;
-        while(i<arr.length-1){
-            i++;
+        while(i<arr.length){
             sum=sum+arr[i];
-            if(hm.containsKey(sum)){
-                hm.put(sum,hm.get(sum)+1);
-
-            }else{
-                hm.put(sum,1);
-
-            }
-            int n=sum-k;//main logic
+            int n=sum-k;
             if(hm.containsKey(n)){
                 count=count+hm.get(n);
             }
-        }
+          hm.put(sum, hm.getOrDefault(sum,0)+1);
+           
+            i++;
+            }
         return count;
     }
-    }
+}
