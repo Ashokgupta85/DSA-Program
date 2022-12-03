@@ -1,0 +1,38 @@
+Input: s = "Aabb"
+Output: "bbAa"
+Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
+Note that 'A' and 'a' are treated as two different characters.
+
+class Solution {
+    public String frequencySort(String s) {
+       HashMap<Character,Integer>hm=new HashMap<>();
+        for(char i:s.toCharArray()){
+            if(hm.containsKey(i)){
+                hm.put(i,hm.get(i)+1);
+            }else{
+                hm.put(i,1);
+            }
+        }
+        List<Character>[] bucketArr=new List[s.length()+1];//ceate a array with character node type
+        for(Character ch:hm.keySet()){  //map iteration
+            int freq=hm.get(ch);
+            if(bucketArr[freq]==null){
+                bucketArr[freq]=new ArrayList<>();
+            }
+            bucketArr[freq].add(ch);
+        }
+        StringBuilder sb=new StringBuilder();
+        for(int i=bucketArr.length-1;i>=0;i--){
+            if(bucketArr[i]!=null){
+            for(char c:bucketArr[i]){
+                for(int j=0;j<hm.get(c);j++){
+                    sb.append(c);
+                }
+            }
+            }
+        }
+        return sb.toString();
+        
+        
+    }
+}
