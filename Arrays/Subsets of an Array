@@ -16,6 +16,7 @@ class Solution {
             int temp=i;
             ArrayList<Integer>arr=new ArrayList<>();
             for(int j=0;j<nums.length;j++){
+            //convert temp into binary 0's and 1's
                 int rem=temp%2;
                 temp=temp/2;
                 if(rem==1){
