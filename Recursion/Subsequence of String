@@ -1,0 +1,19 @@
+
+input:"abc"
+output:"a","b","c","ab","ac","bc","abc"
+
+
+public class SubSequence {
+    public static void main(String[] args) {
+          subseq("","abc");
+    }
+    public static  void subseq(String newStr,String original){
+        if(original.isEmpty()){
+            System.out.println(newStr);
+            return;
+        }
+        char ch=original.charAt(0);
+        subseq(newStr+ch,original.substring(1));//adding
+        subseq(newStr,original.substring(1));//removing
+    }
+}
