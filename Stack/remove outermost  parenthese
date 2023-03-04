@@ -17,3 +17,31 @@ Output: ""
 Explanation: 
 The input string is "()()", with primitive decomposition "()" + "()".
 After removing outer parentheses of each part, this is "" + "" = "".
+
+Solution :
+
+class Solution {
+    public String removeOuterParentheses(String s) {
+        
+       StringBuilder result = new StringBuilder();
+        int sum = 0;
+
+        for(char c : s.toCharArray()){
+            if (c == '(') {
+                sum++;
+                
+                if (sum > 1) {
+                result.append(c);
+                }
+            } else {
+                sum--;
+
+                if (sum > 0){ 
+                result.append(c);
+                }
+            }
+        }
+
+        return result.toString();
+    }
+}
