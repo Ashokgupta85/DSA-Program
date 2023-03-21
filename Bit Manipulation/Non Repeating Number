@@ -1,0 +1,59 @@
+Given an array A containing 2*N+2 positive numbers, out of which 2*N numbers exist in pairs whereas the other two number occur exactly once and are distinct. Find the other two numbers. Return in increasing order.
+
+
+Example 1:
+
+Input: 
+N = 2
+arr[] = {1, 2, 3, 2, 1, 4}
+Output:
+3 4 
+Explanation:
+3 and 4 occur exactly once
+
+//Solution
+
+
+class Solution
+{
+    public int[] singleNumber(int[] nums)
+    {
+        // Code here
+        int xor=0;
+        //find the Xor Value ex- xor=010;
+        for(int i=0;i<nums.length;i++){
+            xor=xor^nums[i];
+           }
+          //we are checking first bit of Xor value and count the posi
+          int count=0;
+          while(xor!=0){
+              if((xor&1)!=0){
+                  break;
+              }
+              count++;
+              xor=xor>>1;
+          }
+          int xor1=0;
+          int xor2=0;
+          //we are checking every element of first bits and if count posi pr 0 aaya toh usko usi alg catagory me
+          //aur agr 1 aaya toh usko alg catagory me
+          for(int i=0;i<nums.length;i++){
+              if((nums[i]&(1<<count))!=0){
+                  xor1=xor1^nums[i];
+              }else{
+                  xor2=xor2^nums[i];
+              }
+          }
+          int ans[]=new int[2];
+          if(xor1>xor2){
+              ans[0]=xor2;
+              ans[1]=xor1;
+              return ans;
+          }else{
+              ans[1]=xor2;
+              ans[0]=xor1;
+              return ans;
+          }
+           
+    }
+}
