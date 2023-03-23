@@ -1,0 +1,50 @@
+Given an unsorted array, Arr[] of size N and that contains even number of occurrences for all numbers except two numbers. Find the two numbers in decreasing order which has odd occurrences.
+
+Example 1:
+
+Input:
+N = 8
+Arr = {4, 2, 4, 5, 2, 3, 3, 1}
+Output: {5, 1} 
+Explaination: 5 and 1 have odd occurrences.
+
+//Solution
+
+class Solution
+{
+    public int[] twoOddNum(int arr[], int N)
+    {
+        // code here
+        int xor=0;
+        for(int i=0;i<N;i++){
+            xor=xor^arr[i];
+        }
+        int count=0;
+        while(xor!=0){
+            if((xor&1)!=0){
+                break;
+            }
+            count++;
+            xor=xor>>1;
+        }
+        int xor1=0;
+        int xor2=0;
+        for(int i=0;i<N;i++){
+            if((arr[i]&(1<<count))==0){
+                xor1=xor1^arr[i];
+            }else{
+                xor2=xor2^arr[i];
+            }
+        }
+        int ans[]=new int[2];
+      if(xor1>=xor2){
+          ans[0]=xor1;
+          ans[1]=xor2;
+          return ans;
+      }else{
+          ans[1]=xor1;
+          ans[0]=xor2;
+          return ans;
+      }
+    }
+}
