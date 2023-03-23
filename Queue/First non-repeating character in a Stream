@@ -1,0 +1,39 @@
+Given an input stream of A of n characters consisting only of lower case alphabets. The task is to find the first non repeating character, each time a character is inserted to the stream. If there is no such character then append '#' to the answer.
+ 
+
+Example 1:
+
+Input: A = "aabc"
+Output: "a#bb"
+Explanation: For every character first non
+repeating character is as follow-
+"a" - first non-repeating character is 'a'
+"aa" - no non-repeating character so '#'
+"aab" - first non-repeating character is 'b'
+"aabc" - first non-repeating character is 'b'
+
+//Solution
+
+class Solution
+{
+    public String FirstNonRepeating(String A)
+    {
+        // code here
+        Queue<Character>q=new LinkedList<>();
+        int arr[]=new int[26];
+        String ans="";
+        for(char ch:A.toCharArray()){
+            q.add(ch);
+            arr[ch-'a']++;
+            while(!q.isEmpty() && arr[q.peek()-'a']>1){
+                q.poll();
+            }
+            if(q.isEmpty()==false){
+                ans=ans+q.peek();
+            }else{
+                ans=ans+"#";
+            }
+        }
+        return ans;
+    }
+}
