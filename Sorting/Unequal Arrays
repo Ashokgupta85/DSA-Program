@@ -1,0 +1,73 @@
+You are given two arrays A and B each of length N. You can perform the following operation on array A zero or more times. 
+
+Select any two indices i and j, 1 <= i , j <= N and i != j
+Set A[i] = A[i] + 2 and A[j] = A[j]-2
+Find the minimum number of operations required to make A and B equal.
+
+Note :
+
+Two arrays are said to be equal if the frequency of each element is equal in both of them.
+Arrays may contain duplicate elements.
+Example 1:
+
+Input:
+N = 3
+A[] = {2, 5, 6}
+B[] = {1, 2, 10}
+Output: 2
+Explanation: 
+Select i = 3, j = 2, A[3] = 6 + 2 = 8 and A[2] = 5 - 2 = 3
+Select i = 3, j = 2, A[3] = 8 + 2 = 10 and A[2] = 3 - 2 = 1
+Now A = {2, 1, 10} and B = {1, 2, 10}
+Example 2:
+
+Input:
+N = 2
+A[] = {3, 3}
+B[] = {9, 8}
+Output: -1
+Explanation: 
+It can be shown that A cannot be made equal to B.
+
+Solution :
+
+class Solution {
+    public static long solve(int N, int[] A, int[] B) {
+        // code here
+        Arrays.sort(A);
+        Arrays.sort(B);
+        ArrayList<Integer>evenA=new ArrayList<>();
+        ArrayList<Integer>oddA=new ArrayList<>();
+        ArrayList<Integer>evenB=new ArrayList<>();
+        ArrayList<Integer>oddB=new ArrayList<>();
+        long sum=0;
+        for(int i=0;i<N;i++){
+            sum+=A[i]-B[i];
+            if(A[i]%2==0){
+                evenA.add(A[i]);
+            }else{
+                oddA.add(A[i]);
+            }
+            if(B[i]%2==0){
+                evenB.add(B[i]);
+            }else{
+                oddB.add(B[i]);
+            }
+        }
+        if(sum!=0 || evenA.size()!=evenB.size()){
+            return -1;
+        }
+        long ans=0;
+        for(int i=0;i<oddA.size();i++){
+            int diff1=(Math.abs(oddA.get(i)-oddB.get(i)));
+            ans+=diff1/2;
+        }
+        for(int i=0;i<evenA.size();i++){
+            int diff2=(Math.abs(evenA.get(i)-evenB.get(i)));
+            ans=ans+diff2/2;
+        }
+            
+        return ans/2;
+    }
+}
+    
