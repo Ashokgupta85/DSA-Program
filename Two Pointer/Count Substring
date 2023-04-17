@@ -1,0 +1,59 @@
+Given string s consisting only a,b,c. return the number of substrings containing at least one occurrence of all these characters a, b, and c.
+
+Example 1:
+
+Input:
+abcabc
+Output:
+10
+Explanation:
+The required substrings  are "abc", "abca", "abcab", "abcabc",
+"bca", "bcab", "bcabc", "cab", "cabc" and "abc".
+
+Example 2:
+
+Input:
+aaacb
+Output:
+3
+
+Solution :
+
+class Solution {
+    public static int countSubstring(String s) {
+        // code here
+        int countA=0;
+        int countB=0;
+        int countC=0;
+        int ans=0;
+        int i=0,j=0;
+        int n=s.length();
+        while(j<n){
+            
+            if(s.charAt(j)=='a'){
+                    countA++;
+                }else if(s.charAt(j)=='b'){
+                    countB++;
+                }else if(s.charAt(j)=='c'){
+                    countC++;
+                }
+            
+            while(countA>0 && countB>0 && countC>0){
+                ans=ans+n-j;
+                char st=s.charAt(i);
+                if(st=='a'){
+                    countA--;
+                }else if(st=='b'){
+                    countB--;
+                }else if(st=='c'){
+                    countC--;
+                }
+                i++;
+            }
+           
+            j++;
+            
+        }
+        return ans;
+    }
+}
