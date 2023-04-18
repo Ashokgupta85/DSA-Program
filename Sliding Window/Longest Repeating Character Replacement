@@ -1,0 +1,43 @@
+Given a string S and an integer K. In one operation, you are allowed to choose any character of the string and change it to any other uppercase English character.You can perform this operation atmost K times.
+Return the length of the longest substring containing same letter you can get after performing the above operations.
+Note : S consists of only uppercase English letters.
+
+Example 1:
+
+Input :
+S = "ABBA"
+K = 2
+Output: 4
+Explanation: Replace the 2 occurrences of 'A' with 2 'B's or vice-versa.
+Example 2:
+
+Input :
+S = "AABAABB"
+k = 2
+Output: 6
+Explanation: Replace the occurrence of 'B' with 'A' and form "AAAAAAB".
+The substring "AAAAAA" has the most extended repeating letters, which is 6.
+
+Solution:
+
+class Solution {
+    static int characterReplacement(String s, int k) {
+        // code here
+      int n = s.length();
+      
+      int[] count = new int[26];
+        
+        int i = 0, maxCount = 0, maxLength = 0;
+        
+        for (int j = 0; j<n; j++) {
+            
+            maxCount = Math.max(maxCount , ++count[s.charAt(j) - 'A'] );
+            while (j-i + 1- maxCount > k) {
+                count[s.charAt(i) - 'A']--;
+                i++;
+            }
+            maxLength = Math.max(maxLength, j - i+ 1);
+        }
+        return maxLength;
+    }
+}
