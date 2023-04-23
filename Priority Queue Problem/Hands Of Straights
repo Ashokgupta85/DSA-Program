@@ -1,0 +1,76 @@
+Alice has some number of cards and she wants to rearrange the cards into groups so that each group is of size groupSize, and consists of groupSize consecutive cards.
+
+Given an integer array hand where hand[i] is the value written on the ith card and an integer groupSize, return true if she can rearrange the cards, or false otherwise.
+
+ 
+
+Example 1:
+
+Input: hand = [1,2,3,6,2,3,4,7,8], groupSize = 3
+Output: true
+Explanation: Alice's hand can be rearranged as [1,2,3],[2,3,4],[6,7,8]
+Example 2:
+
+Input: hand = [1,2,3,4,5], groupSize = 4
+Output: false
+Explanation: Alice's hand can not be rearranged into groups of 4.
+
+Solution :
+
+class Solution {
+    public boolean isNStraightHand(int[] hand, int k) {
+       //  Method I 
+       
+      if(hand.length % k != 0) return false;
+
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for(int elem: hand) minHeap.add(elem);
+
+        while(!minHeap.isEmpty()){
+            int head = minHeap.poll();
+            for(int i=1; i<k; i++)
+                if(minHeap.remove(head+i)) {
+                    continue;
+                }else{
+                    return false;
+                }
+        }
+        return true;
+
+             
+       
+    }
+}
+
+// Method II 
+
+
+// class Solution {
+//     public boolean isNStraightHand(int[] hand, int groupSize) {
+//        Arrays.sort(hand);
+
+//        int len = hand.length;
+       
+//        boolean[] visited = new boolean[len];
+//        // 1,2,2,3,3,4,6,7,8
+//        // t,t,f,t,f,f,f,f,f
+//        for(int i = 0;i < len;i++){
+//            if(visited[i]) continue;
+//            visited[i] = true;
+//            int j = i + 1;
+//            int count = 1;
+//            int num = hand[i] + 1;
+//            for(count = 1;j < len && count < groupSize;j++){
+//                if(visited[j]) continue;
+//                if(hand[j] > num) break;
+//                if(hand[j] == num ) {
+//                    num++;
+//                    visited[j] = true;
+//                    count++;
+//                }
+//            }
+//            if(count < groupSize) return false;
+//        }
+//        return true;
+//     }
+// }
