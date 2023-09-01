@@ -1,0 +1,77 @@
+Given the root of a binary tree, the value of a target node target, and an integer k, return an array of the values of all nodes that have a distance k from the target node.
+
+You can return the answer in any order.
+
+Solution:
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void markedParent(TreeNode root, Map<TreeNode,TreeNode>parent_track){
+        Queue<TreeNode>q=new LinkedList<>();
+        q.add(root);
+        while(q.size()>0){
+            TreeNode current=q.poll();
+            if(current.left!=null){
+                parent_track.put(current.left,current);
+                q.add(current.left);
+            }
+            if(current.right!=null){
+                parent_track.put(current.right,current);
+                q.add(current.right);
+            }
+        }
+    }
+
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+     Map<TreeNode,TreeNode>parent_track=new HashMap<>();
+     markedParent(root,parent_track);
+
+     Queue<TreeNode>q=new LinkedList<>();
+     Map<TreeNode,Boolean>visited=new HashMap<>();
+     int dist=0;
+     visited.put(target,true);
+      q.add(target);
+     while(q.size()>0){
+         int size=q.size();
+         if(dist==k){
+             break;
+         }
+         dist++;
+
+         for(int i=0;i<size;i++){
+             TreeNode curr=q.poll();
+             if(curr.left!=null && visited.get(curr.left)==null){
+                 q.add(curr.left);
+                 visited.put(curr.left,true);
+             }
+             if(curr.right!=null && visited.get(curr.right)==null){
+                 q.add(curr.right);
+                 visited.put(curr.right,true);
+             }
+             if(parent_track.get(curr)!=null && visited.get(parent_track.get(curr))==null){
+                 q.add(parent_track.get(curr));
+                 visited.put(parent_track.get(curr),true);
+             }   
+
+         }
+     }
+     List<Integer>ans=new ArrayList<>();
+
+     while(q.size()>0){
+         TreeNode elem=q.poll();
+         ans.add(elem.val);
+     }
+      return ans;
+    
+    }
+
+}
+
