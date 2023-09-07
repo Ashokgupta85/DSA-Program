@@ -1,0 +1,38 @@
+You are given a 0-indexed string num representing a non-negative integer.
+
+In one operation, you can pick any digit of num and delete it. Note that if you delete all the digits of num, num becomes 0.
+
+Return the minimum number of operations required to make num special.
+
+An integer x is considered special if it is divisible by 25.
+
+ 
+
+Example 1:
+
+Input: num = "2245047"
+Output: 2
+Explanation: Delete digits num[5] and num[6]. The resulting number is "22450" which is special since it is divisible by 25.
+It can be shown that 2 is the minimum number of operations required to get a special number.
+
+Solution:
+try to turn last two digits into 00 , 25 , 50 , 75
+
+class Solution {
+    public int minimumOperations(String num) {
+       boolean fivefound = false;
+       boolean zerofound = false;
+        for (int i =num.length()-1; i >=0;i--) {
+            
+            if (zerofound && num.charAt(i)=='0') return num.length()-2-i;
+            if (zerofound && num.charAt(i)=='5') return num.length()-2-i;
+            if (fivefound && num.charAt(i)=='2') return num.length()-2-i;
+            if (fivefound && num.charAt(i)=='7') return num.length()-2-i;
+            if (num.charAt(i)=='5') fivefound = true;
+            if (num.charAt(i)=='0') zerofound = true;
+            
+        }
+        if (zerofound) return num.length()-1;
+        return num.length();
+    }
+}
